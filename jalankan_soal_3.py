@@ -18,17 +18,22 @@ def main():
         pilihan = input("Pilih menu (1/2/3/4): ")
         
         if pilihan == '1':
-            pesanan_baru = input("Masukkan nama pesanan: ")
-            antrian.enqueue(pesanan_baru)
+            nama_pemesan = input("Masukkan nama pemesan: ")
+            menu_pesanan = input("Masukkan menu yang dipesan: ")
+            antrian.enqueue(nama_pemesan, menu_pesanan)
         elif pilihan == '2':
             pesanan_dihapus = antrian.dequeue()
-            if pesanan_dihapus:
-                print(f"Pesanan '{pesanan_dihapus}' telah dihapus dari antrian.")
+            if pesanan_dihapus != "Antrian kosong":
+                print(f"Pesanan '{pesanan_dihapus['menu']}' untuk '{pesanan_dihapus['nama']}' telah dihapus dari antrian.")
+            else:
+                print(pesanan_dihapus)
         elif pilihan == '3':
-            antrian.list()
+            print("========== DATA ANTRIAN ==========")
+            antrian.data_pelanggan()
         elif pilihan == '4':
-            print("Program selesai.")
+            print("\nProgram selesai.")
             break
         else:
             print("Pilihan tidak valid. Silakan pilih menu yang benar.")
+
 main()
